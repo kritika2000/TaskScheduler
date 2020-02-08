@@ -45,14 +45,13 @@ class TodoAdapter(val todos : ArrayList<Todo>) : RecyclerView.Adapter<TodoAdapte
             itemView.taskid.text=todo.Task
             val date:String="${todo.day}/${todo.month}/${todo.year}"
             itemView.dateid.text=date
-            //Log.i("DATE","${todo.day}/${todo.month}/${todo.year}")
             itemView.Timeid.text=todo.Time
             if(todo.Priority=="true") {
-                val color="#39FFC107"
+                val color="#3403A9F4"
                 itemView.setBackgroundColor(Color.parseColor(color))
             }
             else{
-                val color="#FFFFFF"
+                val color="#378BC34A"
                 itemView.setBackgroundColor(Color.parseColor(color))
             }
         }

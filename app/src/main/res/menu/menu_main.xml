@@ -16,4 +16,9 @@
         android:title="Today"
         app:showAsAction="never"
         />
+    <item
+        android:id="@+id/action_important"
+        android:title="Important"
+        app:showAsAction="never"
+        />
 </menu>

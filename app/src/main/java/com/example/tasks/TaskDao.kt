@@ -1,5 +1,6 @@
 package com.example.tasks
 
+import android.renderscript.RenderScript
 import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Delete
@@ -21,8 +22,10 @@ interface TaskDao {
     suspend fun deleteAll()
     @Query("Update Todo Set isSwiped=:v where id=:id")
     suspend fun updateTask(id:Long,v:Boolean)
-    @Query("Select * From Todo where (isSwiped==0)")
+    @Query("Select * From Todo where isSwiped=0")
     fun getTasks():LiveData<List<Todo>>
     @Query("Select * From Todo where day=:day AND month=:month AND year=:year")
     fun getTodayTasks(day:Int,month:Int,year:Int) : LiveData<List<Todo>>
+    @Query("Select * From Todo where Priority=:p")
+    fun getImporatntTasks(p:String) : LiveData<List<Todo>>
 }

@@ -3,6 +3,7 @@ import android.app.*
 import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
+import android.graphics.*
 import android.icu.text.Edits
 import android.os.Build
 import android.os.Bundle
@@ -138,7 +139,7 @@ class MainActivity : AppCompatActivity() {
                         startActivityForResult(intent, 1)
                     }
 
-                    val ith = object : ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.RIGHT) {
+                    val ith = object : ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.RIGHT or ItemTouchHelper.LEFT) {
                         override fun onMove(
                             recyclerView: RecyclerView,
                             viewHolder: RecyclerView.ViewHolder,
@@ -167,6 +168,37 @@ class MainActivity : AppCompatActivity() {
                                 })
                                 .show()
                         }
+
+//                        override fun onChildDraw(
+//                            c: Canvas,
+//                            recyclerView: RecyclerView,
+//                            viewHolder: RecyclerView.ViewHolder,
+//                            dX: Float,
+//                            dY: Float,
+//                            actionState: Int,
+//                            isCurrentlyActive: Boolean
+//                        ) {
+//                            val itemView=viewHolder.itemView
+//                            val background = RectF(itemView.left as (Float),itemView.top as Float,dX,itemView.bottom as Float)
+//                            val height : Float = itemView.top as Float - itemView.bottom as Float
+//                            val  width : Float = height / 3;
+//                            val Icon:Bitmap=BitmapFactory.decodeResource(getResources(), R.drawable.ic_delete_black_24dp);
+//                                super.onChildDraw(
+//                                c,
+//                                recyclerView,
+//                                viewHolder,
+//                                dX,
+//                                dY,
+//                                actionState,
+//                                isCurrentlyActive
+//                            )
+//                            if (dX > 0) {
+//                                c.drawRect(background,Paint((Color.parseColor("#FF1B2F"))))
+//                                // Draw the delete icon
+//                                 val icon_dest=RectF(itemView.left as (Float)+width,itemView.top as Float+width,itemView.left as Float+2*width,itemView.bottom as Float-width)
+//                                c.drawBitmap(Icon,null,icon_dest,Paint((Color.parseColor("#FF1B2F"))))
+//                            }
+//                        }
                     }
                     ItemTouchHelper(ith).attachToRecyclerView(RvTodos)
           }
@@ -225,6 +257,10 @@ class MainActivity : AppCompatActivity() {
                 }
                 R.id.action_today -> {
                     val intent=Intent(this,Today::class.java)
+                    startActivity(intent)
+                }
+                R.id.action_important -> {
+                    val intent=Intent(this,Important::class.java)
                     startActivity(intent)
                 }
             }
